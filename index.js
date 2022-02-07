@@ -9,6 +9,7 @@ var NumeroFinal = parseInt(prompt());
 for(var i = NumeroInicial; i<= NumeroFinal; i++){
     if(i==2 || i==3 || i==5){
         Array.push(i)
+        alert(i es numero primo)
     }
     else if(i%2!=0 && i%3!=0 && i%5!=0){
         Array.push(i)
