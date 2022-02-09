@@ -1,0 +1,43 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 7 feb 2022, 21:19:38
+    Author     : PC
+*/
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+.title{
+    text-align: center; 
+    font-family: 'Montserrat', sans-serif;
+}
+.barra{
+    background-color: #222;
+    height: 150px;
+    color: #fff;
+}
+.progress{
+    background-color: #fff;
+    width: 30%;
+}
+.container{
+    background-color: #97EEC0;
+    margin: 10%
+}
+.container input{
+    width: 10%;
+    padding-bottom: 5%;
+}
+.container label{
+    width: 80%;
+    padding-bottom: 5%;
+}
+h3{
+    padding: 2%;
+    font-family: 'Montserrat', sans-serif;
+}
+.valorpunt{
+    font-family: 'Montserrat', sans-serif;
+    float: right;
+}
