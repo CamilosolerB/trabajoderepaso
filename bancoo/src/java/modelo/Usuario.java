@@ -25,6 +25,11 @@ public class Usuario {
         this.imagen = imagen;
     }
 
+    public Usuario(String documento) {
+        this.documento = documento;
+    }
+    
+
     public Usuario() {
     }
 

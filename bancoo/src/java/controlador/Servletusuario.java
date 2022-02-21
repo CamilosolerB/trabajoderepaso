@@ -66,6 +66,25 @@ public class Servletusuario extends HttpServlet {
             i=request.getParameter("aimg");
             Usuario us = new Usuario(d, u, c, r, e, i);
             UsuarioDAO udao = new UsuarioDAO();
+            boolean res = udao.actualizarusuuario(us);
+            if (res) {
+                JOptionPane.showMessageDialog(null, "Usuario actualizado correctamente");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "error en la actualizacion");
+            }
+        }
+        if(request.getParameter("delete")!=null){
+            d=request.getParameter("adoc");
+            Usuario us = new Usuario(d);
+            UsuarioDAO udao = new UsuarioDAO();
+            boolean call = udao.deleteusuario(us);
+            if (call) {
+                JOptionPane.showMessageDialog(null, "Dato eliminado con exito");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Error en la eliminacion");
+            }
         }
     }
 
