@@ -57,6 +57,36 @@ public class Servletcliente extends HttpServlet {
                     JOptionPane.showMessageDialog(null, "Error en la insercion");
                 }
             }
+            if(request.getParameter("update")!=null){
+                documento=request.getParameter("adoc");
+                nombre=request.getParameter("anom");
+                apellido=request.getParameter("aape");
+                correo=request.getParameter("aema");
+                numero=request.getParameter("anum");
+                sexo=request.getParameter("sexo");
+                fecnac=request.getParameter("fecnac");
+                Clientes cl = new Clientes(documento, nombre, apellido, correo, numero, sexo, fecnac);
+                ClientesDAO cla = new ClientesDAO();
+                boolean result = cla.actualizarcliente(cl);
+                if (result) {
+                    JOptionPane.showMessageDialog(null, "Actualizacion completa");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "No se ha podido actualizar");
+                }
+            }
+            if(request.getParameter("delete")!=null){
+                documento=request.getParameter("adoc");
+                Clientes cl = new Clientes(documento);
+                ClientesDAO cla = new ClientesDAO();
+                boolean result = cla.deletecliente(cl);
+                if (result) {
+                    JOptionPane.showMessageDialog(null, "Eliminado satisfactoriamente");
+                }
+                else{
+                    JOptionPane.showMessageDialog(null, "Error en la eliminacion");
+                }
+            }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
