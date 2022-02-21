@@ -56,6 +56,17 @@ public class Servletusuario extends HttpServlet {
                 JOptionPane.showMessageDialog(null, "error en la insercion");
             }
         }
+        
+        if(request.getParameter("update")!=null){
+            d=request.getParameter("adoc");
+            u=request.getParameter("ausu");
+            c=request.getParameter("acla");
+            r=request.getParameter("arol");
+            e=request.getParameter("aest");
+            i=request.getParameter("aimg");
+            Usuario us = new Usuario(d, u, c, r, e, i);
+            UsuarioDAO udao = new UsuarioDAO();
+        }
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

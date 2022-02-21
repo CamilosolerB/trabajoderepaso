@@ -1,0 +1,21 @@
+select *from TbEstudianteXCurso;
+select *from TbCurso
+where (Valor_Cur between 500000 and  900000);
+select *from TbCurso
+where Nom_cur like '%sql%';
+select *from TbEstudiante
+order by Edad_Est;
+update TbEstudiante set Edad_Est= 17 where Nom_Est="Jonatan";
+update TbEstudiante set Edad_Est= 19 where Nom_Est="Carlos";
+update TbEstudiante set Edad_Est= 23 where Nom_Est="Maria";
+update TbEstudiante set Edad_Est= 25 where Nom_Est="Carlos Jose";
+select *from TbEstudiante
+where Nom_Est like'%carlos%' and Edad_Est>20;
+
+set sql_safe_updates=0;
+select *from TbProfesor
+where Sal_prof >=600000;
+select count(*) from TbEstudiante
+where (Edad_Est>20);
+select Cate_Prof,Sal_Prof from TbProfesor
+order by Cate_Prof;

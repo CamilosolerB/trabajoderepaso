@@ -79,3 +79,7 @@ nav ul li a:hover{
     padding-bottom: 50%;
     border-radius: 5px;
 }
+.section{
+    width: 80%;
+    margin: 10%;
+}

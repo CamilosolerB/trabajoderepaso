@@ -17,7 +17,7 @@ public class Conexion {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             try {
-                mysql = DriverManager.getConnection("jdbc:mysql://uy0dnfdgmkd1uctz:EQ9OIHZNY1UYe1Nl87uk@b4wvpgbs0pfdzjvlqp7r-mysql.services.clever-cloud.com:3306/b4wvpgbs0pfdzjvlqp7r");
+                mysql = DriverManager.getConnection("jdbc:mysql://localhost:3306/banco","root","");
                 System.out.println("conexion exitosa");
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null,"El error es "+ e);

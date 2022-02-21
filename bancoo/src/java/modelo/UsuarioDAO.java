@@ -6,6 +6,7 @@ package modelo;
 
 import controlador.Conexion;
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,6 +20,7 @@ public class UsuarioDAO {
     Conexion con = new Conexion();
     Connection cnn = con.conexionsql();
     PreparedStatement ps;
+    ResultSet rs;
     
     public boolean insertarusuario(Usuario us){
         int x=0;
@@ -40,5 +42,21 @@ public class UsuarioDAO {
             JOptionPane.showMessageDialog(null, "sucedio el error "+ex);
         }
         return res;
+    }
+    
+    public ArrayList<Usuario> consultausuario(){
+        ArrayList<Usuario> lista = new ArrayList<>();
+            try {
+            ps=cnn.prepareStatement("Select * from usuario");
+            rs=ps.executeQuery();
+            while(rs.next()){
+                Usuario usu = new Usuario(rs.getString(1), rs.getString(2), rs.getString(3),
+                    rs.getString(4), rs.getString(5), rs.getString(6));
+                lista.add(usu);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return lista;
     }
 }
