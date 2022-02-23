@@ -72,4 +72,19 @@ public class CreditoDAO {
             }
         return valor;
     }
+        public ArrayList <Credito> Consultacredito(){
+        ArrayList<Credito> listado = new ArrayList<Credito>();
+        try {
+            ps=mysql.prepareStatement("Select * From creditos");
+            rs= ps.executeQuery();
+            while(rs.next()){
+                Credito cre = new Credito(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4), rs.getString(5), rs.getInt(6));
+                listado.add(cre);
+            }
+        } 
+        catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return listado;
+    }
 }

@@ -31,6 +31,10 @@
                 <li><a href="lineas.jsp">Lineas</a></li>
                 <li><a href="#">Creditos</a></li>
             </ul>
+            <ul>
+                <li><a href="#">Insertar</a></li>
+                <li><a href="tablacredito.jsp">Consultar</a></li>
+            </ul>
             <div>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Banco_Santander_Logotipo_%282007-2018%29.svg/2560px-Banco_Santander_Logotipo_%282007-2018%29.svg.png" class="foto"/>
             </div>
