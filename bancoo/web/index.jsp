@@ -1,62 +1,68 @@
 <%-- 
-    Document   : index
-    Created on : 18/02/2022, 1:24:10 p. m.
+    Document   : indexx
+    Created on : 23/02/2022, 8:41:10 a. m.
     Author     : SENA
 --%>
 
-<%@page import="controlador.Conexion"%>
-<%@page import="controlador.Servletusuario" %>
-<%@page import="java.sql.*" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Formulario usuarios</title>
+        <link rel="stylesheet" href="css/login.css"/>
         <link rel="icon" href="https://e7.pngegg.com/pngimages/181/292/png-clipart-santander-group-santander-bank-logo-quiz-ultimate-bank-text-hand.png"/>
-        <link rel="stylesheet" href="css/style.css"/>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <title>Login banco</title>
+        
     </head>
     <body>
-        <nav class="navbar">
-            <ul>
-                <li><a href="/bancoo">Usuarios</a></li>
-                <li><a href="cliente.jsp">Clientes</a></li>
-                <li><a href="lineas.jsp">Lineas</a></li>
-                <li><a href="credito.jsp">Creditos</a></li>
-            </ul>
-            <ul>
-                <li><a href="#">Insertar</a></li>
-                <li><a href="consultausuarios.jsp">Consultar</a></li>
-            </ul>
-            <div>
-                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Banco_Santander_Logotipo_%282007-2018%29.svg/2560px-Banco_Santander_Logotipo_%282007-2018%29.svg.png" class="foto"/>
-            </div>
-        </nav>
-        <h1 style="text-align: center;">Formulario Usuarios</h1>
-        <form class="formulario" action="Servletusuario" method="POST">
-            <label for="documento">Numero de documento</label>
-            <input type="number" id="documento" placeholder="Documento" name="documento">
-            <label for="nombre">Nombre de usuario</label>
-            <input type="text" id="nombre" placeholder="Digite el usuario" name="nombre">
-            <label for="clave">Clave</label>
-            <input type="password" id="clave" placeholder="Digite su clave" name="clave">
-            <label for="Rol">Rol del usuario</label>
-            <select id="Rol" name="rol">
-                <option value="value" disabled>Indique el rol</option>
-                <option value="admin">Administrador</option>
-                <option value="cliente">Cliente</option>
-                <option value="empleado">Empleado</option>
-            </select>
-            <label for="estado">Estado</label>
-            <select id="estado" name="estado">
-                <option value="estado" disabled>Estado</option>
-                <option value="activo">Activo</option>
-                <option value="inactivo">Inactivo</option>
-            </select>
-            <label id="imagen">Foto</label>
-            <input type="text" id="id" name="imagen">
-            <button type="submit" name="subir">Enviar</button>
-        </form>
-        
+        <div class="container">
+            <img src="img/fondo.png" alt="alt" class="img"/>
+            <!--Formulario-->
+            <div class="min-h-full flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+                <div class="max-w-md w-full space-y-8">
+                  <div>
+                    <img class="mx-auto h-12 w-auto" src="https://tailwindui.com/img/logos/workflow-mark-indigo-600.svg" alt="Workflow">
+                    <h2 class="mt-6 text-center text-3xl font-extrabold text-gray-900">Bienvenido Usuario</h2>
+                  </div>
+                  <form class="mt-8 space-y-6" action="Servletlogin" method="POST">
+                    <input type="hidden" name="remember" value="true">
+                    <div class="rounded-md shadow-sm -space-y-px">
+                      <div>
+                        <label for="email-address" class="sr-only">Usuario</label>
+                        <input id="email-address" name="user" type="text" autocomplete="email" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-t-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Usuario">
+                      </div>
+                      <div>
+                        <label for="password" class="sr-only">Password</label>
+                        <input id="password" name="password" type="password" autocomplete="current-password" required class="appearance-none rounded-none relative block w-full px-3 py-2 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-b-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 focus:z-10 sm:text-sm" placeholder="Password">
+                      </div>
+                    </div>
+              
+                    <div class="flex items-center justify-between">
+                      <div class="flex items-center">
+                        <input id="remember-me" name="remember-me" type="checkbox" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                        <label for="remember-me" class="ml-2 block text-sm text-gray-900"> Remember me </label>
+                      </div>
+              
+                      <div class="text-sm">
+                        <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500"> Forgot your password? </a>
+                      </div>
+                    </div>
+              
+                    <div>
+                      <button type="submit" class="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" name="sing">
+                        <span class="absolute left-0 inset-y-0 flex items-center pl-3">
+                          <!-- Heroicon name: solid/lock-closed -->
+                          <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                            <path fill-rule="evenodd" d="M5 9V7a5 5 0 0110 0v2a2 2 0 012 2v5a2 2 0 01-2 2H5a2 2 0 01-2-2v-5a2 2 0 012-2zm8-2v2H7V7a3 3 0 016 0z" clip-rule="evenodd" />
+                          </svg>
+                        </span>
+                        Sign in
+                      </button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+        </div>
     </body>
 </html>

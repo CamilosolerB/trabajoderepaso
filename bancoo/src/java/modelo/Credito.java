@@ -30,6 +30,10 @@ public class Credito {
     
     }
 
+    public Credito(String codigo) {
+        this.codigo = codigo;
+    }
+
     
     public String getCodigo() {
         return codigo;

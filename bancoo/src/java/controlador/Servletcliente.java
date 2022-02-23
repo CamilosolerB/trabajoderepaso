@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -37,6 +38,7 @@ public class Servletcliente extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             PrintWriter out = response.getWriter();
+            RequestDispatcher rd;
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/aaaa");
             String documento, nombre, apellido, correo, numero, sexo, fecnac;
             if(request.getParameter("subir")!=null){
@@ -52,9 +54,13 @@ public class Servletcliente extends HttpServlet {
                 boolean comparador = cdao.insertartcliente(clien);
                 if (comparador) {
                     JOptionPane.showMessageDialog(null, "Cliente insertado correctamente");
+                    rd = request.getRequestDispatcher("/cliente.jsp");
+                    rd.forward(request, response);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Error en la insercion");
+                    rd = request.getRequestDispatcher("/cliente.jsp");
+                    rd.forward(request, response);
                 }
             }
             if(request.getParameter("update")!=null){
@@ -70,9 +76,13 @@ public class Servletcliente extends HttpServlet {
                 boolean result = cla.actualizarcliente(cl);
                 if (result) {
                     JOptionPane.showMessageDialog(null, "Actualizacion completa");
+                    rd = request.getRequestDispatcher("/cliente.jsp");
+                    rd.forward(request, response);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "No se ha podido actualizar");
+                    rd = request.getRequestDispatcher("/cliente.jsp");
+                    rd.forward(request, response);
                 }
             }
             if(request.getParameter("delete")!=null){
@@ -82,9 +92,13 @@ public class Servletcliente extends HttpServlet {
                 boolean result = cla.deletecliente(cl);
                 if (result) {
                     JOptionPane.showMessageDialog(null, "Eliminado satisfactoriamente");
+                    rd = request.getRequestDispatcher("/cliente.jsp");
+                    rd.forward(request, response);
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Error en la eliminacion");
+                    rd = request.getRequestDispatcher("/cliente.jsp");
+                    rd.forward(request, response);
                 }
             }
     }

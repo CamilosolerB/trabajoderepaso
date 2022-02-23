@@ -7,6 +7,7 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +36,7 @@ public class Servletcreditos extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
         PrintWriter out = response.getWriter();
+        RequestDispatcher rd;
         String codigo,documento, codlinea, fecha;
         int monto, plazo;
         if(request.getParameter("subir")!=null){
@@ -51,9 +53,48 @@ public class Servletcreditos extends HttpServlet {
             boolean valorfinal = cdao.insertarcreditos(cre);
             if (valorfinal) {
                 JOptionPane.showMessageDialog(null, "Credito generado con exito");
+                rd = request.getRequestDispatcher("/credito.jsp");
+                rd.forward(request, response);
             }
             else{
                 JOptionPane.showMessageDialog(null, "Credito no generado");
+                rd = request.getRequestDispatcher("/credito.jsp");
+                rd.forward(request, response);
+            }
+        }
+        if(request.getParameter("update")!=null){
+            codigo=request.getParameter("acod");
+            documento=request.getParameter("adoc");
+            codlinea=request.getParameter("acod");
+            monto=Integer.parseInt(request.getParameter("amon"));
+            fecha=request.getParameter("afec");
+            plazo=Integer.parseInt(request.getParameter("apla"));
+            Credito cre = new Credito(codigo, documento, codlinea, monto, fecha, plazo);
+            CreditoDAO cdao = new CreditoDAO();
+            if(cdao.actualizarcredito(cre)){
+                JOptionPane.showMessageDialog(null, "Actualizacion realizada");
+                rd = request.getRequestDispatcher("/credito.jsp");
+                rd.forward(request, response);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Error en la actualizacion");
+                rd = request.getRequestDispatcher("/credito.jsp");
+                rd.forward(request, response);
+            }
+        }
+        if(request.getParameter("delete")!=null){
+            codigo=request.getParameter("acod");
+            Credito cre = new Credito(codigo);
+            CreditoDAO cdao = new CreditoDAO();
+            if(cdao.deletecredito(cre)){
+                JOptionPane.showMessageDialog(null, "Eliminacion completada");
+                rd = request.getRequestDispatcher("/credito.jsp");
+                rd.forward(request, response);
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Fallo al eliminar");
+                rd = request.getRequestDispatcher("/credito.jsp");
+                rd.forward(request, response);
             }
         }
     }

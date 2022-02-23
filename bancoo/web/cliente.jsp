@@ -16,7 +16,7 @@
     <body>
          <nav class="navbar">
             <ul>
-                <li><a href="/bancoo">Usuarios</a></li>
+                <li><a href="indexa.jsp">Usuarios</a></li>
                 <li><a href="#">Clientes</a></li>
                 <li><a href="lineas.jsp">Lineas</a></li>
                 <li><a href="credito.jsp">Creditos</a></li>

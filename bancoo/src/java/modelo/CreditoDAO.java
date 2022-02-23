@@ -72,7 +72,7 @@ public class CreditoDAO {
             }
         return valor;
     }
-        public ArrayList <Credito> Consultacredito(){
+    public ArrayList <Credito> Consultacredito(){
         ArrayList<Credito> listado = new ArrayList<Credito>();
         try {
             ps=mysql.prepareStatement("Select * From creditos");
@@ -87,4 +87,41 @@ public class CreditoDAO {
         }
         return listado;
     }
+    
+        public boolean actualizarcredito(Credito cre){
+        boolean valor=false;
+            try {
+                ps=mysql.prepareStatement("Update creditos set documentocre=?, codlineacre=?, monto=?, fecha=?, plazo=? where codigo=?");
+                ps.setString(1, cre.getDocumento());
+                ps.setString(2, cre.getCodlinea());
+                ps.setInt(3, cre.getMonto());
+                ps.setString(4, cre.getFecha());
+                ps.setInt(5, cre.getPlazo());
+                ps.setString(6, cre.getCodigo());
+                if (ps.executeUpdate()>0) {
+                    valor=true;
+                }
+            } 
+            catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        return valor;
+    }
+        
+    public boolean deletecredito(Credito cre){
+        boolean valor=false;
+            try {
+                ps=mysql.prepareStatement("Delete from creditos where codigo=?");
+                ps.setString(1, cre.getCodigo());
+                if (ps.executeUpdate()>0) {
+                    valor=true;
+                }
+            } 
+            catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
+            }
+        return valor;
+    }
+        
+    
 }

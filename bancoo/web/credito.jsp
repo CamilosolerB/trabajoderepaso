@@ -26,7 +26,7 @@
         %>
          <nav class="navbar">
             <ul>
-                <li><a href="/bancoo">Usuarios</a></li>
+                <li><a href="indexa.jsp">Usuarios</a></li>
                 <li><a href="cliente.jsp">Clientes</a></li>
                 <li><a href="lineas.jsp">Lineas</a></li>
                 <li><a href="#">Creditos</a></li>

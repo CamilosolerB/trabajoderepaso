@@ -7,6 +7,7 @@ package controlador;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.*;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +36,7 @@ public class Servletusuario extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //PrintWriter out = response.getWriter();
+        RequestDispatcher rd;
         String  d,u,c,r,e,i;
         if(request.getParameter("subir")!=null){
             //Connection cnn;
@@ -86,6 +88,8 @@ public class Servletusuario extends HttpServlet {
                 JOptionPane.showMessageDialog(null, "Error en la eliminacion");
             }
         }
+        rd = request.getRequestDispatcher("/indexa.jsp");
+        rd.forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -7,6 +7,7 @@ package controlador;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -35,6 +36,7 @@ public class Servletlinea extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
                 PrintWriter out = response.getWriter();
+                RequestDispatcher rd;
                 String codigo,numero,monto;
                 int plazo;
                 if(request.getParameter("subir")!=null){
@@ -47,9 +49,13 @@ public class Servletlinea extends HttpServlet {
                     boolean resultado = linean.insertarlinea(lin);
                     if (resultado) {
                         JOptionPane.showMessageDialog(null, "linea añadida con exito");
+                        rd = request.getRequestDispatcher("/lineas.jsp");
+                        rd.forward(request, response);
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "Ocurrio un error vuelva a intentarlo");
+                        rd = request.getRequestDispatcher("/lineas.jsp");
+                        rd.forward(request, response);
                     }
                 }
                 if(request.getParameter("update")!=null){
@@ -62,9 +68,13 @@ public class Servletlinea extends HttpServlet {
                     boolean res = linean.actualizarlinea(lin);
                     if (res) {
                         JOptionPane.showMessageDialog(null, "actualizacion exitosa");
+                        rd = request.getRequestDispatcher("/lineas.jsp");
+                        rd.forward(request, response);
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "error en la insercion");
+                        rd = request.getRequestDispatcher("/lineas.jsp");
+                        rd.forward(request, response);
                     }
                 }
                 if(request.getParameter("delete")!=null){
@@ -73,9 +83,13 @@ public class Servletlinea extends HttpServlet {
                     LineaDAO linean = new LineaDAO();
                     if (linean.deletelinea(lin)) {
                         JOptionPane.showMessageDialog(null, "Elimnacion completa");
+                        rd = request.getRequestDispatcher("/lineas.jsp");
+                        rd.forward(request, response);
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "Error en la eliminacion");
+                        rd = request.getRequestDispatcher("/lineas.jsp");
+                        rd.forward(request, response);
                     }
                 }
             }
