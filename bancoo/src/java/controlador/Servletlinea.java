@@ -52,6 +52,32 @@ public class Servletlinea extends HttpServlet {
                         JOptionPane.showMessageDialog(null, "Ocurrio un error vuelva a intentarlo");
                     }
                 }
+                if(request.getParameter("update")!=null){
+                    codigo=request.getParameter("acod");
+                    numero=request.getParameter("anum");
+                    monto=request.getParameter("amon");
+                    plazo=Integer.parseInt(request.getParameter("apla"));
+                    Linea lin = new Linea(codigo, numero, monto, plazo);
+                    LineaDAO linean = new LineaDAO();
+                    boolean res = linean.actualizarlinea(lin);
+                    if (res) {
+                        JOptionPane.showMessageDialog(null, "actualizacion exitosa");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "error en la insercion");
+                    }
+                }
+                if(request.getParameter("delete")!=null){
+                    codigo=request.getParameter("acod");
+                    Linea lin = new Linea(codigo);
+                    LineaDAO linean = new LineaDAO();
+                    if (linean.deletelinea(lin)) {
+                        JOptionPane.showMessageDialog(null, "Elimnacion completa");
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "Error en la eliminacion");
+                    }
+                }
             }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

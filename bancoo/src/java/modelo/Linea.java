@@ -22,6 +22,10 @@ public class Linea {
         this.plazo = plazo;
     }
 
+    public Linea(String codigo) {
+        this.codigo = codigo;
+    }
+
     public Linea() {
     }
     
