@@ -44,7 +44,7 @@ public class Servletlogin extends HttpServlet {
                 sesion.setAttribute("user", user);
                 sesion.setAttribute("password", password);
                 Logueo log = new Logueo();
-                if(log.validarusuario()){
+                if(log.validarusuario(user,password)){
                     JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
                     rd=request.getRequestDispatcher("/indexa.jsp");
                     rd.forward(request, response);

@@ -8,6 +8,7 @@ import controlador.Conexion;
 import java.sql.*;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
+import controlador.Servletlogin;
 /**
  *
  * @author SENA
@@ -19,15 +20,9 @@ public class Logueo {
     ResultSet rs;
     HttpSession respueta;
     
-    public boolean validarusuario(){
-        
+    public boolean validarusuario(String user, String password){
         boolean result=false;
             try {
-                String user, password;
-                user= String.valueOf(respueta.getAttribute("user"));
-                password=String.valueOf(respueta.getAttribute("password"));
-                JOptionPane.showMessageDialog(null, user);
-                JOptionPane.showMessageDialog(null, password);
                 ps=mysql.prepareStatement("Select * from usuario Where nombre=? And clave=?");
                 ps.setString(1, user);
                 ps.setString(2, password);
