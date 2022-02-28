@@ -85,16 +85,36 @@ public class Servletlogin extends HttpServlet {
                     else{
                         uu= lgg.getUsuario();
                         cl= lgg.getPassword();
-
                         dd= lgg.getDocumento();
                         rr = lgg.getRol();
       
                         if(uu.equals(user) && cl.equals(password)){
-                            JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
-                            sesion.setAttribute("usuario", uu);
-                            sesion.setAttribute("rol", rr);
-                            rd=request.getRequestDispatcher("/indexa.jsp");
-                            rd.forward(request, response);
+                            switch (rr) {
+                                case "admin":
+                                    JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
+                                    sesion.setAttribute("usuario", uu);
+                                    sesion.setAttribute("rol", rr);
+                                    rd=request.getRequestDispatcher("/indexa.jsp");
+                                    rd.forward(request, response);
+                                    break;
+                                case "empleado":
+                                    JOptionPane.showMessageDialog(null, "Bienvenido al sistema - empleado");
+                                    sesion.setAttribute("usuario", uu);
+                                    JOptionPane.showMessageDialog(null, uu);
+                                    sesion.setAttribute("rol", rr);
+                                    request.getRequestDispatcher("vistaempleado.jsp").forward(request, response);
+                                    //rd.forward(request, response);
+                                    break;
+                                case "cliente":
+                                JOptionPane.showMessageDialog(null, "Bienvenido al sistema - clientes");
+                                sesion.setAttribute("usuario", uu);
+                                sesion.setAttribute("rol", rr);
+                                rd=request.getRequestDispatcher("/vistacliente.jsp");
+                                rd.forward(request, response);
+                                    break;
+                                default:
+                                    JOptionPane.showMessageDialog(null,"rol no encontrado");
+                            }
                         }
                 }
             }
