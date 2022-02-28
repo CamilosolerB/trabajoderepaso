@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
+import modelo.Login;
 import modelo.Logueo;
 
 /**
@@ -35,26 +36,8 @@ public class Servletlogin extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
             PrintWriter out = response.getWriter();
-            HttpSession sesion = request.getSession();
-            RequestDispatcher rd;
-            if(request.getParameter("sing")!=null){
-                String user,password;
-                user=request.getParameter("user");
-                password=request.getParameter("password");
-                sesion.setAttribute("user", user);
-                sesion.setAttribute("password", password);
-                Logueo log = new Logueo();
-                if(log.validarusuario(user,password)){
-                    JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
-                    rd=request.getRequestDispatcher("/indexa.jsp");
-                    rd.forward(request, response);
-                }
-                else{
-                    JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecto");
-                    rd=request.getRequestDispatcher("/index.jsp");
-                    rd.forward(request, response);
-                }
-            }
+
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -84,6 +67,37 @@ public class Servletlogin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+                HttpSession sesion = request.getSession();
+                RequestDispatcher rd;
+                Login lgg;
+                if(request.getParameter("sing")!=null){
+                    
+                    String user,password, uu, cl, rr, dd;
+                    user=request.getParameter("user");
+                    password=request.getParameter("password");
+                    Logueo log = new Logueo();
+                    Login validate = new Login(user, password);
+                    lgg=log.validarusuario(validate);
+                    if(lgg==null){
+                            JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecto");
+                            rd=request.getRequestDispatcher("/index.jsp");
+                            rd.forward(request, response);                    }
+                    else{
+                        uu= lgg.getUsuario();
+                        cl= lgg.getPassword();
+
+                        dd= lgg.getDocumento();
+                        rr = lgg.getRol();
+      
+                        if(uu.equals(user) && cl.equals(password)){
+                            JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
+                            sesion.setAttribute("usuario", uu);
+                            sesion.setAttribute("rol", rr);
+                            rd=request.getRequestDispatcher("/indexa.jsp");
+                            rd.forward(request, response);
+                        }
+                }
+            }
     }
 
     /**

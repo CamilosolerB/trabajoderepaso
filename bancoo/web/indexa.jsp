@@ -3,7 +3,11 @@
     Created on : 18/02/2022, 1:24:10 p. m.
     Author     : SENA
 --%>
-
+<%
+    HttpSession sesion = request.getSession();
+    String usu = (String) sesion.getAttribute("usuario");
+    String rol = (String) sesion.getAttribute("rol");
+%>
 <%@page import="controlador.Conexion"%>
 <%@page import="controlador.Servletusuario" %>
 <%@page import="java.sql.*" %>
@@ -27,6 +31,8 @@
             <ul>
                 <li><a href="#">Insertar</a></li>
                 <li><a href="consultausuarios.jsp">Consultar</a></li>
+                <li><a><%=usu%></a></li>
+                <li><a><%=rol%></a></li>
             </ul>
             <div>
                 <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c4/Banco_Santander_Logotipo_%282007-2018%29.svg/2560px-Banco_Santander_Logotipo_%282007-2018%29.svg.png" class="foto"/>

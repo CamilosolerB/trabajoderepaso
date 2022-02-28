@@ -19,22 +19,22 @@ public class Logueo {
     PreparedStatement ps;
     ResultSet rs;
     HttpSession respueta;
+    Login logg;
     
-    public boolean validarusuario(String user, String password){
-        boolean result=false;
+    public Login validarusuario(Login log){
             try {
-                ps=mysql.prepareStatement("Select * from usuario Where nombre=? And clave=?");
-                ps.setString(1, user);
-                ps.setString(2, password);
+                ps=mysql.prepareStatement("Select documento ,nombre, clave, rol From usuario Where nombre=? AND clave=?");
+                ps.setString(1, log.getUsuario());
+                ps.setString(2, log.getPassword());
                 rs=ps.executeQuery();
-                if(rs.next()){
-                    result=true;
+                while(rs.next()){
+                    logg = new Login( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
                 }
             }   
             
             catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, e);
             }
-        return result;
+        return logg;
     }
 }
