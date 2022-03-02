@@ -39,7 +39,7 @@
             </div>
         </nav>
         <h1 style="text-align: center;">Formulario Usuarios</h1>
-        <form class="formulario" action="Servletusuario" method="POST">
+        <form class="formulario" action="Servletusuario" method="POST" enctype="multipart/form-data">
             <label for="documento">Numero de documento</label>
             <input type="number" id="documento" placeholder="Documento" name="documento">
             <label for="nombre">Nombre de usuario</label>
@@ -60,7 +60,7 @@
                 <option value="inactivo">Inactivo</option>
             </select>
             <label id="imagen">Foto</label>
-            <input type="text" id="id" name="imagen">
+            <input type="file" id="id" name="imagen">
             <button type="submit" name="subir">Enviar</button>
         </form>
         

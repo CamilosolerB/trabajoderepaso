@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="css/style.css"/>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"/>
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+        <link rel="stylesheet" href="webimages"/>
         <title>JSP Page</title>
     </head>
     <body>
@@ -55,14 +56,14 @@
                 listado=usdao.consultausuario();
                 for(Usuario lista: listado){   
             %>
-            <form action="Servletusuario" method="post">
+            <form action="Servletusuario" method="post" enctype="multipart/form-data">
               <tr>
                   <th scope="row" ><input type="type" value="<%=lista.getDocumento()%>" name="adoc"></th>
                 <td><input type="type" value="<%=lista.getUsuario()%>" name="ausu"></td>
                 <td><input type="type" value="<%=lista.getClave()%>" name="acla"></td>
                 <td><input type="type" value="<%=lista.getRol()%>" name="arol"></td>
                 <td><input type="type" value="<%=lista.getEstado()%>" name="aest"></td>
-                <td><input type="type" value="<%=lista.getImagen()%>" name="aimg"></td>
+                <td><input type="file" name="aimg"><input type="image" value="<%=lista.getImagen()%>" src="<%=lista.getImagen()%>" name="imgant"></td>
                 <td>
                     <button name="update" class="btn btn-success"><i class="fa-solid fa-pen-clip"></i></button>
                     <button name="delete" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>

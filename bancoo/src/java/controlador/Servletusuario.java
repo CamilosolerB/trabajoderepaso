@@ -4,15 +4,21 @@
  */
 package controlador;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.PrintWriter;
+import java.nio.file.Paths;
 import java.sql.*;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.Part;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import modelo.UsuarioDAO;
@@ -22,6 +28,7 @@ import modelo.UsuarioDAO;
  * @author SENA
  */
 @WebServlet(name = "Servletusuario", urlPatterns = {"/Servletusuario"})
+@MultipartConfig 
 public class Servletusuario extends HttpServlet {
 
     /**
@@ -37,7 +44,7 @@ public class Servletusuario extends HttpServlet {
             throws ServletException, IOException {
         //PrintWriter out = response.getWriter();
         RequestDispatcher rd;
-        String  d,u,c,r,e,i;
+        String  d,u,c,r,e,nomarc,nombre,url,context,delete,stimg;
         if(request.getParameter("subir")!=null){
             //Connection cnn;
             //Conexion con = new Conexion();
@@ -47,8 +54,13 @@ public class Servletusuario extends HttpServlet {
             c=request.getParameter("clave");
             r=request.getParameter("rol");
             e=request.getParameter("estado");
-            i=request.getParameter("imagen");
-            Usuario us = new Usuario(d, u, c, r, e, i);
+            Part i = request.getPart("imagen");
+            nomarc = i.getSubmittedFileName();
+            context = request.getServletContext().getRealPath("webimages");
+            url=Paths.get(i.getSubmittedFileName()).getFileName().toString();
+            i.write(context+ File.separator + url);
+            url = "webimages/"+nomarc;
+            Usuario us = new Usuario(d, u, c, r, e, url);
             UsuarioDAO udao = new UsuarioDAO();
             boolean y=udao.insertarusuario(us);
             if(y){
@@ -65,8 +77,13 @@ public class Servletusuario extends HttpServlet {
             c=request.getParameter("acla");
             r=request.getParameter("arol");
             e=request.getParameter("aest");
-            i=request.getParameter("aimg");
-            Usuario us = new Usuario(d, u, c, r, e, i);
+            Part i = request.getPart("aimg");
+            nomarc = i.getSubmittedFileName();
+            context = request.getServletContext().getRealPath("webimages");
+            url=Paths.get(i.getSubmittedFileName()).getFileName().toString();
+            i.write(context+ File.separator + url);
+            url = "webimages/"+nomarc;
+            Usuario us = new Usuario(d, u, c, r, e, url);
             UsuarioDAO udao = new UsuarioDAO();
             boolean res = udao.actualizarusuuario(us);
             if (res) {
