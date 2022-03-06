@@ -3,12 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/SENA/Documents/camilo/bancoo/web/index.jsp</file>
-            <file>file:/C:/Users/SENA/Documents/camilo/bancoo/src/java/controlador/Servletlogin.java</file>
-            <file>file:/C:/Users/SENA/Documents/camilo/bancoo/web/indexa.jsp</file>
-            <file>file:/C:/Users/SENA/Documents/camilo/bancoo/web/vistacliente.jsp</file>
-            <file>file:/C:/Users/SENA/Documents/camilo/bancoo/src/java/modelo/Logueo.java</file>
-            <file>file:/C:/Users/SENA/Documents/camilo/bancoo/web/vistaempleado.jsp</file>
+            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/web/tablacliente.jsp</file>
+            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/web/consultausuarios.jsp</file>
+            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/web/tablacredito.jsp</file>
+            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/web/tablalineas.jsp</file>
         </group>
     </open-files>
 </project-private>

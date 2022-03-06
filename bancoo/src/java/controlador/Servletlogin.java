@@ -72,7 +72,7 @@ public class Servletlogin extends HttpServlet {
                 Login lgg;
                 if(request.getParameter("sing")!=null){
                     
-                    String user,password, uu, cl, rr, dd;
+                    String user,password, uu, cl, rr, dd,ff,nn,aa;
                     user=request.getParameter("user");
                     password=request.getParameter("password");
                     Logueo log = new Logueo();
@@ -85,15 +85,20 @@ public class Servletlogin extends HttpServlet {
                     else{
                         uu= lgg.getUsuario();
                         cl= lgg.getPassword();
-                        dd= lgg.getDocumento();
                         rr = lgg.getRol();
-      
+                        ff = lgg.getFoto();
+                        nn= lgg.getNombre();
+                        aa= lgg.getApellido();
+                        
                         if(uu.equals(user) && cl.equals(password)){
                             switch (rr) {
                                 case "admin":
                                     JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
                                     sesion.setAttribute("usuario", uu);
                                     sesion.setAttribute("rol", rr);
+                                    sesion.setAttribute("foto", ff);
+                                    sesion.setAttribute("nombre", nn);
+                                    sesion.setAttribute("apellido", aa);
                                     rd=request.getRequestDispatcher("/indexa.jsp");
                                     rd.forward(request, response);
                                     break;
@@ -102,13 +107,19 @@ public class Servletlogin extends HttpServlet {
                                     sesion.setAttribute("usuario", uu);
                                     JOptionPane.showMessageDialog(null, uu);
                                     sesion.setAttribute("rol", rr);
-                                    request.getRequestDispatcher("vistaempleado.jsp").forward(request, response);
+                                    sesion.setAttribute("foto", ff);
+                                    sesion.setAttribute("nombre", nn);
+                                    sesion.setAttribute("apellido", aa);
+                                    request.getRequestDispatcher("cliente.jsp").forward(request, response);
                                     //rd.forward(request, response);
                                     break;
                                 case "cliente":
                                 JOptionPane.showMessageDialog(null, "Bienvenido al sistema - clientes");
-                                sesion.setAttribute("usuario", uu);
-                                sesion.setAttribute("rol", rr);
+                                    sesion.setAttribute("usuario", uu);
+                                    sesion.setAttribute("rol", rr);
+                                    sesion.setAttribute("foto", ff);
+                                    sesion.setAttribute("nombre", nn);
+                                    sesion.setAttribute("apellido", aa);
                                 rd=request.getRequestDispatcher("/vistacliente.jsp");
                                 rd.forward(request, response);
                                     break;

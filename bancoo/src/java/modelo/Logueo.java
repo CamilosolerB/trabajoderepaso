@@ -23,12 +23,12 @@ public class Logueo {
     
     public Login validarusuario(Login log){
             try {
-                ps=mysql.prepareStatement("Select documento ,nombre, clave, rol From usuario Where nombre=? AND clave=?");
+                ps=mysql.prepareStatement("Select nombre, clave, rol, imagen, nombrec, apellido From usuario Inner Join cliente On (documento=documentoc) Where nombre=? AND clave=?");
                 ps.setString(1, log.getUsuario());
                 ps.setString(2, log.getPassword());
                 rs=ps.executeQuery();
                 while(rs.next()){
-                    logg = new Login( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4));
+                    logg = new Login( rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6));
                 }
             }   
             

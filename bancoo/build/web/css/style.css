@@ -7,8 +7,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/CascadeStyleSheet.css
     Author     : SENA
 */
 body{
-    background: url(https://images.vexels.com/media/users/3/69996/raw/827e37552fed3bad1bd7201c6dbb2407-fondo-verde-abstracto-con-lineas-espirales.jpg);
-    width: auto;
+background: rgb(0,6,50);
+background: radial-gradient(circle, rgba(0,6,50,1) 24%, rgba(0,0,0,1) 73%);
 }
 
 .formulario{
@@ -73,13 +73,25 @@ nav ul li a{
     text-decoration: none;
     color: #fff;
 }
-nav ul li a:hover{
-    background-color: #222;
-    padding-top: 50%;
-    padding-bottom: 50%;
-    border-radius: 5px;
-}
 .section{
     width: 80%;
     margin: 10%;
+}
+.imgs{
+    width: 10px;
+    height: 10px;
+}
+.containers{
+    background-color: #fff;
+    display: block;
+    width: 20%;
+    height: 100%;
+}
+
+.containers a{
+    display: block;
+    background: rgb(0,6,50);
+    background: radial-gradient(circle, rgba(0,6,50,1) 24%, rgba(0,0,0,1) 73%);
+    padding: 10%;
+    margin: 5%;
 }

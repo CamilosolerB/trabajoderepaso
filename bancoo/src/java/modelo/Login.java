@@ -9,16 +9,20 @@ package modelo;
  * @author SENA
  */
 public class Login {
-    private String documento;
     private String usuario;
     private String password;
     private String rol;
+    private String foto;
+    private String nombre;
+    private String apellido;
 
-    public Login(String documento, String usuario, String password, String rol) {
-        this.documento = documento;
+    public Login(String usuario, String password, String rol, String foto,String nombre, String apellido) {
         this.usuario = usuario;
         this.password = password;
         this.rol = rol;
+        this.foto = foto;
+        this.nombre = nombre;
+        this.apellido = apellido;
     }
 
     public Login() {
@@ -31,13 +35,30 @@ public class Login {
         this.password = password;
     }
 
-    public String getDocumento() {
-        return documento;
+    public String getFoto() {
+        return foto;
     }
 
-    public void setDocumento(String documento) {
-        this.documento = documento;
+    public void setFoto(String foto) {
+        this.foto = foto;
     }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
 
     public String getUsuario() {
         return usuario;
