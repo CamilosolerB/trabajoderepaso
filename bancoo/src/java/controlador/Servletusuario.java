@@ -70,19 +70,31 @@ public class Servletusuario extends HttpServlet {
                 JOptionPane.showMessageDialog(null, "error en la insercion");
             }
         }
-        
-        if(request.getParameter("update")!=null){
+        if(request.getParameter("actfot")!=null){
             d=request.getParameter("adoc");
-            u=request.getParameter("ausu");
-            c=request.getParameter("acla");
-            r=request.getParameter("arol");
-            e=request.getParameter("aest");
             Part i = request.getPart("aimg");
             nomarc = i.getSubmittedFileName();
             context = request.getServletContext().getRealPath("webimages");
             url=Paths.get(i.getSubmittedFileName()).getFileName().toString();
             i.write(context+ File.separator + url);
             url = "webimages/"+nomarc;
+            UsuarioDAO udao = new UsuarioDAO();
+            Usuario us = new Usuario(d,url);
+            if(udao.actualizarimg(us)){
+                JOptionPane.showMessageDialog(null, "Imagen actualizada con exito");
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "Error al actualizar");
+            }
+        }
+        if(request.getParameter("update")!=null){
+            d=request.getParameter("adoc");
+            u=request.getParameter("ausu");
+            c=request.getParameter("acla");
+            r=request.getParameter("arol");
+            e=request.getParameter("aest");
+            url=request.getParameter("imgant");
+            JOptionPane.showMessageDialog(null, url);
             Usuario us = new Usuario(d, u, c, r, e, url);
             UsuarioDAO udao = new UsuarioDAO();
             boolean res = udao.actualizarusuuario(us);
@@ -136,6 +148,8 @@ public class Servletusuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
+        
+        
     }
 
     /**

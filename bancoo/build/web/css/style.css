@@ -86,6 +86,7 @@ nav ul li a{
     display: block;
     width: 20%;
     height: 100%;
+    padding: 5%;
 }
 
 .containers a{
@@ -94,4 +95,5 @@ nav ul li a{
     background: radial-gradient(circle, rgba(0,6,50,1) 24%, rgba(0,0,0,1) 73%);
     padding: 10%;
     margin: 5%;
+    color: #fff;
 }

@@ -91,4 +91,19 @@ public class UsuarioDAO {
             }
         return respuesta;
     }
+    
+    public boolean actualizarimg(Usuario us){
+        boolean respuesta=false;
+        try {
+            ps=cnn.prepareStatement("Update usuario set imagen=? Where documento=?");
+            ps.setString(1, us.getImagen());
+            ps.setString(2, us.getDocumento());
+            if(ps.executeUpdate()>0){
+                respuesta=true;
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return respuesta;
+    } 
 }

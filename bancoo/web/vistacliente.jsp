@@ -37,11 +37,11 @@
       
         <div id="navbarBasicExample" class="navbar-menu">
           <div class="navbar-start">
-            <a class="navbar-item has-text-white">
+              <a class="navbar-item has-text-white" href="vistacliente.jsp">
               Mis datos personales
             </a>
       
-            <a class="navbar-item has-text-white">
+              <a class="navbar-item has-text-white" href="lineasind.jsp">
               Mis lineas
             </a>
       
@@ -51,10 +51,10 @@
               </a>
       
               <div class="navbar-dropdown">
-                <a class="navbar-item ">
+                  <a class="navbar-item " href="creditoind.jsp">
                   Mis creditos
                 </a>
-                <a class="navbar-item">
+                  <a class="navbar-item" href="transferencia.jsp">
                   Tranferencias
                 </a>
               </div>
@@ -64,7 +64,7 @@
           <div class="navbar-end">
             <div class="navbar-item">
               <div class="buttons">
-                <a class="button is-light">
+                <a class="button is-light" href="/bancoo">
                   Salir
                 </a>
               </div>
@@ -72,42 +72,70 @@
           </div>
         </div>
       </nav>
-    <form action="" method="post" class="container m-6 p-4 box">
+    <form action="Servletcliente" method="post" class="container m-6 p-4 box">
         <h1 class="label">Mis datos</h1>
         <div class="field">
             <label class="label">Documento</label>
             <div class="control">
-              <input class="input" type="number" placeholder="Documento">
+                <input class="input" type="number" placeholder="Documento" disabled name="adoc">
             </div>
           </div>
           
           <div class="field">
             <label class="label">Nombre</label>
             <div class="control">
-              <input class="input" type="text" placeholder="e.g. alexsmith@gmail.com">
+                <input class="input" type="text" placeholder="Nombre" name="anom">
             </div>
           </div>
           <div class="field">
-            <label class="label">Contraseña</label>
+            <label class="label">Apellido</label>
             <div class="control">
-              <input class="input" type="text" placeholder="e.g Alex Smith">
+                <input class="input" type="text" placeholder="Apellido" name="aape">
             </div>
           </div>
           
           <div class="field">
-            <label class="label">Rol</label>
+            <label class="label">Correo</label>
             <div class="control">
-              <input class="input" type="text" disabled placeholder="e.g. alexsmith@gmail.com">
+                <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com" name="aema">
             </div>
           </div>
           <div class="field">
-            <label class="label">Estado</label>
+            <label class="label">Celular</label>
             <div class="control">
-              <input class="input" type="text" disabled placeholder="e.g Alex Smith">
+              <input class="input" type="number" placeholder="Numero de telefono">
             </div>
           </div>
-          
-          <div class="image">
+          <div class="field">
+            <label class="label">Sexo</label>
+            <div class="control">
+                <input class="input" type="text" placeholder="Masculino, Femenino, No binario">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Fecha de nacimiento</label>
+            <div class="control">
+                <input class="input" type="date" placeholder="Fecha de nacimiento">
+            </div>
+          </div>
+        <button class="button is-success m-2" name="update">Actualizar mi informacion</button>
+        </form>
+        <form action="" method="post" class="container m-4 p-6 box">
+            <h1 class="label">Actualizar Usuario </h1>
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                  <input class="input" type="text" placeholder="e.g Alex Smith">
+                </div>
+              </div>
+              
+              <div class="field">
+                <label class="label">Email</label>
+                <div class="control">
+                  <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
+                </div>
+              </div>
+                      <div class="image">
             <label class="label">Foto</label>
             <div class="control">
               <input class="image" type="image" placeholder="e.g. alexsmith@gmail.com">
@@ -127,23 +155,6 @@
               </div>
               <button class="button is-success m-4">Cargar foto</button>
           </div>
-          <button class="button is-success m-2">Actualizar mi informacion</button>
-        </form>
-        <form action="" method="post" class="container m-4 p-6 box">
-            <h1 class="label">Actualizar Usuario </h1>
-            <div class="field">
-                <label class="label">Name</label>
-                <div class="control">
-                  <input class="input" type="text" placeholder="e.g Alex Smith">
-                </div>
-              </div>
-              
-              <div class="field">
-                <label class="label">Email</label>
-                <div class="control">
-                  <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
-                </div>
-              </div>
               <button class="button is-success m-2">Actualizar mi informacion</button>
             </form>
 </body>

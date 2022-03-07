@@ -3,10 +3,14 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/web/tablacliente.jsp</file>
+            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/src/java/modelo/Login.java</file>
+            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/src/java/modelo/Logueo.java</file>
+            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/src/java/modelo/UsuarioDAO.java</file>
+            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/src/java/controlador/Servletlogin.java</file>
+            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/web/vistacliente.jsp</file>
+            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/src/java/controlador/Servletcliente.java</file>
+            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/src/java/controlador/Servletusuario.java</file>
             <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/web/consultausuarios.jsp</file>
-            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/web/tablacredito.jsp</file>
-            <file>file:/C:/Users/PC/Documents/ADSI/2022/bancoo/web/tablalineas.jsp</file>
         </group>
     </open-files>
 </project-private>

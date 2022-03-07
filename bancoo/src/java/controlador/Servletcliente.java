@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 import modelo.Clientes;
 import modelo.ClientesDAO;
@@ -37,6 +38,9 @@ public class Servletcliente extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+            HttpSession sesion = request.getSession();
+            String rol = (String) sesion.getAttribute("rol");
+        
             PrintWriter out = response.getWriter();
             RequestDispatcher rd;
             SimpleDateFormat formato = new SimpleDateFormat("dd/MM/aaaa");
@@ -76,8 +80,14 @@ public class Servletcliente extends HttpServlet {
                 boolean result = cla.actualizarcliente(cl);
                 if (result) {
                     JOptionPane.showMessageDialog(null, "Actualizacion completa");
-                    rd = request.getRequestDispatcher("/cliente.jsp");
-                    rd.forward(request, response);
+                    if(rol.equals("cliente")){
+                        rd = request.getRequestDispatcher("/vistacliente.jsp");
+                        rd.forward(request, response);
+                    }
+                    else{
+                        rd = request.getRequestDispatcher("/cliente.jsp");
+                        rd.forward(request, response);
+                    }
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "No se ha podido actualizar");

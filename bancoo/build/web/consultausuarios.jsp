@@ -112,7 +112,8 @@
                 <td><input type="type" value="<%=lista.getClave()%>" name="acla" class="text-black"></td>
                 <td><input type="type" value="<%=lista.getRol()%>" name="arol" class="text-black"></td>
                 <td><input type="type" value="<%=lista.getEstado()%>" name="aest" class="text-black"></td>
-                <td><input type="file" name="aimg" class="imgs" class="text-black"><input type="image" value="<%=lista.getImagen()%>" src="<%=lista.getImagen()%>" name="imgant" width="40%" class="text-black"></td>
+                <td><input type="file" name="aimg" class="text-black"><input type="image" value="<%=lista.getImagen()%>" src="<%=lista.getImagen()%>" name="imgant" width="40%" class="text-black"></td>
+                <td><button name="actfot" class="btn btn-primary">Actualizar foto</button></td>
                 <td>
                     <button name="update" class="btn btn-success"><i class="fa-solid fa-pen-clip"></i></button>
                     <button name="delete" class="btn btn-danger"><i class="fa-solid fa-trash-can"></i></button>
