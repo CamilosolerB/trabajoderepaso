@@ -91,8 +91,14 @@ public class Servletcliente extends HttpServlet {
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "No se ha podido actualizar");
-                    rd = request.getRequestDispatcher("/cliente.jsp");
-                    rd.forward(request, response);
+                    if(rol.equals("cliente")){
+                        rd = request.getRequestDispatcher("/vistacliente.jsp");
+                        rd.forward(request, response);
+                    }
+                    else{
+                        rd = request.getRequestDispatcher("/cliente.jsp");
+                        rd.forward(request, response);
+                    }
                 }
             }
             if(request.getParameter("delete")!=null){

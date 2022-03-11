@@ -62,13 +62,12 @@ public class UsuarioDAO {
     public boolean actualizarusuuario(Usuario usu){
         boolean respuesta=false;
             try {
-            ps=cnn.prepareStatement("Update usuario set nombre=?, clave=?, rol=?, estado=?, imagen=? where documento=?");
+            ps=cnn.prepareStatement("Update usuario set nombre=?, clave=?, rol=?, estado=? where documento=?");
             ps.setString(1, usu.getUsuario());
             ps.setString(2, usu.getClave());
             ps.setString(3, usu.getRol());
             ps.setString(4, usu.getEstado());
-            ps.setString(5, usu.getImagen());
-            ps.setString(6, usu.getDocumento());
+            ps.setString(5, usu.getDocumento());
             if(ps.executeUpdate()>0){
                 respuesta=true;
             }
@@ -106,4 +105,20 @@ public class UsuarioDAO {
         }
         return respuesta;
     } 
+    
+    public boolean actualizarcli(Usuario us){
+        boolean res=false;
+            try {
+            ps=cnn.prepareStatement("Update usuario set nombre=?, clave=? Where documento=?");
+            ps.setString(1, us.getUsuario());
+            ps.setString(2, us.getClave());
+            ps.setString(3, us.getDocumento());
+                if (ps.executeUpdate()>0) {
+                    res=true;
+                }
+        } catch (SQLException e) {
+                JOptionPane.showMessageDialog(null, e);
+        }
+        return res;
+    }
 }

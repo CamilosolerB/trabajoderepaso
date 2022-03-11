@@ -25,10 +25,26 @@ public class Usuario {
         this.imagen = imagen;
     }
 
+    public Usuario(String documento, String usuario, String clave, String rol, String estado) {
+        this.documento = documento;
+        this.usuario = usuario;
+        this.clave = clave;
+        this.rol = rol;
+        this.estado = estado;
+    }
+
+    
     public Usuario(String documento, String imagen) {
         this.documento = documento;
         this.imagen = imagen;
     }
+
+    public Usuario(String documento, String usuario, String clave) {
+        this.documento = documento;
+        this.usuario = usuario;
+        this.clave = clave;
+    }
+    
 
     public Usuario(String documento) {
         this.documento = documento;

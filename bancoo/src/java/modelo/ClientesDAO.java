@@ -90,4 +90,21 @@ public class ClientesDAO {
             }
         return respuesta;
     }
+      
+        public ArrayList<Clientes> consultaclienteind(Clientes cl){
+        ArrayList<Clientes> lista = new ArrayList<>();
+            try {
+            ps=mysql.prepareStatement("Select * from cliente where documentoc=?");
+            ps.setString(1, cl.getDocumento());
+            rs=ps.executeQuery();
+            while(rs.next()){
+                Clientes cli = new Clientes(rs.getString(1), rs.getString(2), rs.getString(3),
+                    rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7));
+                lista.add(cli);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return lista;
+    }
 }

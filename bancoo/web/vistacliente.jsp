@@ -7,6 +7,15 @@
     HttpSession sesion = request.getSession();
     String usu = (String) sesion.getAttribute("usuario");
     String rol = (String) sesion.getAttribute("rol");
+    String foto = (String) sesion.getAttribute("foto");
+    String nom = (String) sesion.getAttribute("nombre");
+    String ape = (String) sesion.getAttribute("apellido");
+    String cor = (String) sesion.getAttribute("correo");
+    String doc = (String) sesion.getAttribute("documento");
+    String cla = (String) sesion.getAttribute("password");
+    String cel = (String) sesion.getAttribute("celular");
+    String sex = (String) sesion.getAttribute("sexo");
+    String fec = (String) sesion.getAttribute("fecha");
 %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -72,73 +81,73 @@
           </div>
         </div>
       </nav>
-    <form action="Servletcliente" method="post" class="container m-6 p-4 box">
+    <form action="Servletcliente" method="GET" class="container m-6 p-4 box">
         <h1 class="label">Mis datos</h1>
         <div class="field">
             <label class="label">Documento</label>
             <div class="control">
-                <input class="input" type="number" placeholder="Documento" disabled name="adoc">
+                <input class="input" value="<%=doc%>" type="number" placeholder="Documento" name="adoc">
             </div>
           </div>
           
           <div class="field">
             <label class="label">Nombre</label>
             <div class="control">
-                <input class="input" type="text" placeholder="Nombre" name="anom">
+                <input class="input" value="<%=nom%>" type="text" placeholder="Nombre" name="anom">
             </div>
           </div>
           <div class="field">
             <label class="label">Apellido</label>
             <div class="control">
-                <input class="input" type="text" placeholder="Apellido" name="aape">
+                <input class="input" value="<%=ape%>" type="text" placeholder="Apellido" name="aape">
             </div>
           </div>
           
           <div class="field">
             <label class="label">Correo</label>
             <div class="control">
-                <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com" name="aema">
+                <input class="input" value="<%=cor%>" type="email" placeholder="e.g. alexsmith@gmail.com" name="aema">
             </div>
           </div>
           <div class="field">
             <label class="label">Celular</label>
             <div class="control">
-              <input class="input" type="number" placeholder="Numero de telefono">
+                <input class="input" value="<%=cel%>" type="number" placeholder="Numero de telefono" name="anum">
             </div>
           </div>
           <div class="field">
             <label class="label">Sexo</label>
             <div class="control">
-                <input class="input" type="text" placeholder="Masculino, Femenino, No binario">
+                <input class="input" value="<%=sex%>" type="text" placeholder="Masculino, Femenino, No binario" name="sexo">
             </div>
           </div>
           <div class="field">
             <label class="label">Fecha de nacimiento</label>
             <div class="control">
-                <input class="input" type="date" placeholder="Fecha de nacimiento">
+                <input class="input" value="<%=fec%>" type="date" placeholder="Fecha de nacimiento" name="fecnac">
             </div>
           </div>
-        <button class="button is-success m-2" name="update">Actualizar mi informacion</button>
+            <button class="button is-success m-2" type="submit" name="update">Actualizar mi informacion</button>
         </form>
-        <form action="" method="post" class="container m-4 p-6 box">
+            <form action="Servletusuario" method="post" class="container m-4 p-6 box" enctype="multipart/form-data">
             <h1 class="label">Actualizar Usuario </h1>
             <div class="field">
-                <label class="label">Name</label>
+                <label class="label">Usuario</label>
                 <div class="control">
-                  <input class="input" type="text" placeholder="e.g Alex Smith">
+                    <input class="input" type="text" placeholder="e.g Alex Smith" value="<%=usu%>" name="ausu">
                 </div>
               </div>
               
               <div class="field">
-                <label class="label">Email</label>
+                <label class="label">Contraseña</label>
                 <div class="control">
-                  <input class="input" type="email" placeholder="e.g. alexsmith@gmail.com">
+                    <input class="input" value="<%=cla%>" type="password" placeholder="password" name="acla">
                 </div>
               </div>
-                      <div class="image">
+            <div class="image">
             <label class="label">Foto</label>
             <div class="control">
-              <input class="image" type="image" placeholder="e.g. alexsmith@gmail.com">
+                <input src="<%=foto%>" class="image" type="image" value="<%=foto%>" placeholder="e.g. alexsmith@gmail.com">
             </div>
             <div class="file">
                 <label class="file-label">
@@ -153,9 +162,9 @@
                   </span>
                 </label>
               </div>
-              <button class="button is-success m-4">Cargar foto</button>
+            <button class="button is-success m-4" name="actfot">Cargar foto</button>
           </div>
-              <button class="button is-success m-2">Actualizar mi informacion</button>
+            <button class="button is-success m-2" name="actid">Actualizar mi informacion</button>
             </form>
 </body>
 </html>

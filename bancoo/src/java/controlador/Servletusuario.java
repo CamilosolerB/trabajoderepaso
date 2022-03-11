@@ -18,10 +18,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 import javax.swing.JOptionPane;
 import modelo.Usuario;
 import modelo.UsuarioDAO;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -44,6 +46,8 @@ public class Servletusuario extends HttpServlet {
             throws ServletException, IOException {
         //PrintWriter out = response.getWriter();
         RequestDispatcher rd;
+        HttpSession sesion = request.getSession();
+        String rol = (String) sesion.getAttribute("rol");
         String  d,u,c,r,e,nomarc,nombre,url,context,delete,stimg;
         if(request.getParameter("subir")!=null){
             //Connection cnn;
@@ -52,6 +56,7 @@ public class Servletusuario extends HttpServlet {
             d=request.getParameter("documento");
             u=request.getParameter("nombre");
             c=request.getParameter("clave");
+            String encriptado=DigestUtils.md5Hex(c);
             r=request.getParameter("rol");
             e=request.getParameter("estado");
             Part i = request.getPart("imagen");
@@ -60,18 +65,24 @@ public class Servletusuario extends HttpServlet {
             url=Paths.get(i.getSubmittedFileName()).getFileName().toString();
             i.write(context+ File.separator + url);
             url = "webimages/"+nomarc;
-            Usuario us = new Usuario(d, u, c, r, e, url);
+            Usuario us = new Usuario(d, u, encriptado, r, e, url);
             UsuarioDAO udao = new UsuarioDAO();
             boolean y=udao.insertarusuario(us);
             if(y){
                 JOptionPane.showMessageDialog(null, "usuario insertado");
+                
             }
             else{
                 JOptionPane.showMessageDialog(null, "error en la insercion");
             }
         }
         if(request.getParameter("actfot")!=null){
+            
             d=request.getParameter("adoc");
+            if(d==null){
+                d=(String) sesion.getAttribute("documento");
+                JOptionPane.showMessageDialog(null, d);
+            }
             Part i = request.getPart("aimg");
             nomarc = i.getSubmittedFileName();
             context = request.getServletContext().getRealPath("webimages");
@@ -82,20 +93,36 @@ public class Servletusuario extends HttpServlet {
             Usuario us = new Usuario(d,url);
             if(udao.actualizarimg(us)){
                 JOptionPane.showMessageDialog(null, "Imagen actualizada con exito");
+                if(rol.equals("cliente")){
+                    rd = request.getRequestDispatcher("/vistacliente.jsp");
+                    rd.forward(request, response);
+                }
+                else{
+                    rd = request.getRequestDispatcher("/indexa.jsp");
+                    rd.forward(request, response);
+                }
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error al actualizar");
+                                if(rol.equals("cliente")){
+                    rd = request.getRequestDispatcher("/vistacliente.jsp");
+                    rd.forward(request, response);
+                }
+                else{
+                    rd = request.getRequestDispatcher("/indexa.jsp");
+                    rd.forward(request, response);
+                }
             }
         }
         if(request.getParameter("update")!=null){
             d=request.getParameter("adoc");
             u=request.getParameter("ausu");
             c=request.getParameter("acla");
+            String encriptado=DigestUtils.md5Hex(c);
             r=request.getParameter("arol");
             e=request.getParameter("aest");
             url=request.getParameter("imgant");
-            JOptionPane.showMessageDialog(null, url);
-            Usuario us = new Usuario(d, u, c, r, e, url);
+            Usuario us = new Usuario(d, u,encriptado, r, e);
             UsuarioDAO udao = new UsuarioDAO();
             boolean res = udao.actualizarusuuario(us);
             if (res) {
@@ -115,6 +142,25 @@ public class Servletusuario extends HttpServlet {
             }
             else{
                 JOptionPane.showMessageDialog(null, "Error en la eliminacion");
+            }
+        }
+        if (request.getParameter("actid")!=null) {
+            d=(String) sesion.getAttribute("documento");
+            u=request.getParameter("ausu");
+            c=request.getParameter("acla");
+            String encriptado=DigestUtils.md5Hex(c);
+            Usuario us = new Usuario(d, u, encriptado);
+            UsuarioDAO udao = new UsuarioDAO();
+            if (udao.actualizarcli(us)) {
+                JOptionPane.showMessageDialog(null, "Sus datos se han actualizado correctamente");
+                if(rol.equals("cliente")){
+                    rd = request.getRequestDispatcher("/vistacliente.jsp");
+                    rd.forward(request, response);
+                }
+                else{
+                    rd = request.getRequestDispatcher("/indexa.jsp");
+                    rd.forward(request, response);
+                }
             }
         }
         rd = request.getRequestDispatcher("/indexa.jsp");
@@ -148,7 +194,7 @@ public class Servletusuario extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         processRequest(request, response);
-        
+
         
     }
 

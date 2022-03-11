@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import javax.swing.JOptionPane;
 import modelo.Login;
 import modelo.Logueo;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -72,11 +73,12 @@ public class Servletlogin extends HttpServlet {
                 Login lgg;
                 if(request.getParameter("sing")!=null){
                     
-                    String user,password, uu, cl, rr, dd,ff,nn,aa;
+                    String user,password, uu, cl, rr, dd,ff,nn,aa,cc,cel,sex,fecnac;
                     user=request.getParameter("user");
                     password=request.getParameter("password");
+                    String encriptado= DigestUtils.md5Hex(password);
                     Logueo log = new Logueo();
-                    Login validate = new Login(user, password);
+                    Login validate = new Login(user, encriptado);
                     lgg=log.validarusuario(validate);
                     if(lgg==null){
                             JOptionPane.showMessageDialog(null, "Usuario y/o contraseña incorrecto");
@@ -89,8 +91,11 @@ public class Servletlogin extends HttpServlet {
                         ff = lgg.getFoto();
                         nn= lgg.getNombre();
                         aa= lgg.getApellido();
-                        
-                        if(uu.equals(user) && cl.equals(password)){
+                        dd= lgg.getDocumento();
+                        cc = lgg.getCorreo();
+                        cel = lgg.getCelular();
+                        sex = lgg.getSexo();
+                        fecnac = lgg.getFechanac();
                             switch (rr) {
                                 case "admin":
                                     JOptionPane.showMessageDialog(null, "Bienvenido al sistema");
@@ -120,13 +125,18 @@ public class Servletlogin extends HttpServlet {
                                     sesion.setAttribute("foto", ff);
                                     sesion.setAttribute("nombre", nn);
                                     sesion.setAttribute("apellido", aa);
+                                    sesion.setAttribute("documento", dd);
+                                    sesion.setAttribute("password", cl);
+                                    sesion.setAttribute("correo", cc);
+                                    sesion.setAttribute("celular", cel);
+                                    sesion.setAttribute("sexo", sex);
+                                    sesion.setAttribute("fecha", fecnac);
                                 rd=request.getRequestDispatcher("/vistacliente.jsp");
                                 rd.forward(request, response);
                                     break;
                                 default:
                                     JOptionPane.showMessageDialog(null,"rol no encontrado");
                             }
-                        }
                 }
             }
     }
