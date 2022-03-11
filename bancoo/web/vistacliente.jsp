@@ -129,7 +129,7 @@
           </div>
             <button class="button is-success m-2" type="submit" name="update">Actualizar mi informacion</button>
         </form>
-            <form action="Servletusuario" method="post" class="container m-4 p-6 box" enctype="multipart/form-data">
+            <form action="Servletusuario" method="post" class="container m-6 p-4 box">
             <h1 class="label">Actualizar Usuario </h1>
             <div class="field">
                 <label class="label">Usuario</label>
@@ -144,26 +144,7 @@
                     <input class="input" value="<%=cla%>" type="password" placeholder="password" name="acla">
                 </div>
               </div>
-            <div class="image">
-            <label class="label">Foto</label>
-            <div class="control">
-                <input src="<%=foto%>" class="image" type="image" value="<%=foto%>" placeholder="e.g. alexsmith@gmail.com">
-            </div>
-            <div class="file">
-                <label class="file-label">
-                  <input class="file-input" type="file" name="resume">
-                  <span class="file-cta">
-                    <span class="file-icon">
-                      <i class="fas fa-upload"></i>
-                    </span>
-                    <span class="file-label">
-                      Cargar nueva foto...
-                    </span>
-                  </span>
-                </label>
-              </div>
-            <button class="button is-success m-4" name="actfot">Cargar foto</button>
-          </div>
+
             <button class="button is-success m-2" name="actid">Actualizar mi informacion</button>
             </form>
 </body>

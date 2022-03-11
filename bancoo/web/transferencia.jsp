@@ -68,5 +68,22 @@
           </div>
         </div>
       </nav>
+    <form action="Servlettrasferencias" method="POST" class="container p-5 m-6 box">
+        <h1 class="label" style="text-align: center">Transferir dinero</h1>
+        <div class="field">
+            <label class="label">Documento de la persona a transferir</label>
+            <div class="control">
+                <input class="input" type="number" placeholder="Documento" name="doc">
+            </div>
+          </div>
+          
+          <div class="field">
+            <label class="label">Valor a transferir</label>
+            <div class="control">
+                <input class="input" type="number" placeholder="Nombre" name="val">
+            </div>
+          </div>
+        <input type="submit" class="button is-info is-light is-medium is-rounded" value="Tranferir dinero" name="money" />
+    </form>
     </body>
 </html>

@@ -4,6 +4,16 @@
     Author     : PC
 --%>
 
+<%@page import="modelo.LineaDAO"%>
+<%@page import="modelo.Linea"%>
+<%@page import="java.util.ArrayList"%>
+<%
+    ArrayList<Linea> linea = new ArrayList<>();
+    String cod = (String) session.getAttribute("codigo");
+    Linea lin = new Linea(cod);
+    LineaDAO ldao =  new LineaDAO();
+    linea = ldao.consultaind(lin);
+%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -68,36 +78,38 @@
           </div>
         </div>
       </nav>
+    <%
+        for(Linea lind: linea){          
+    %>
         <form action="Servletcliente" method="GET" class="container m-6 p-4 box">
         <h1 class="label">Mis datos</h1>
         <div class="field">
             <label class="label">Codigo de la linea</label>
             <div class="control">
-                <input class="input" value="" type="number" placeholder="Documento" name="adoc">
+                <input class="input" value="<%=lind.getCodigo()%>" type="number" placeholder="Documento" name="adoc">
             </div>
           </div>
           
           <div class="field">
             <label class="label">Numero de linea</label>
             <div class="control">
-                <input class="input" value="" type="text" placeholder="Nombre" name="anom">
+                <input class="input" value="<%=lind.getNumero()%>" type="text" placeholder="Nombre" name="anom">
             </div>
           </div>
           <div class="field">
             <label class="label">Monto maximo</label>
             <div class="control">
-                <input class="input" value="" type="text" placeholder="Apellido" name="aape">
+                <input class="input" value="<%=lind.getMonto()%>" type="text" placeholder="Apellido" name="aape">
             </div>
           </div>
           
           <div class="field">
             <label class="label">Plazo maximo</label>
             <div class="control">
-                <input class="input" value="" type="email" placeholder="e.g. alexsmith@gmail.com" name="aema">
+                <input class="input" value="<%=lind.getPlazo()%>" type="email" placeholder="e.g. alexsmith@gmail.com" name="aema">
             </div>
           </div>
-            <button class="button is-success m-2" type="submit" name="update">Actualizar mi informacion</button>
         </form>
-
+        <%}%>
     </body>
 </html>

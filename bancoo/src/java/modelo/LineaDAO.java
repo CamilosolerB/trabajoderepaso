@@ -86,5 +86,19 @@ public class LineaDAO {
             }
         return valor;
     }
-    
+    public ArrayList<Linea> consultaind(Linea li){
+        ArrayList<Linea> lista = new ArrayList<Linea>();
+            try {
+            ps=mysql.prepareStatement("Select * from lineas Where codlinea=?");
+            ps.setString(1, li.getCodigo());
+            rs=ps.executeQuery();
+            while(rs.next()){
+                Linea cli = new Linea(rs.getString(1), rs.getString(2), rs.getString(3), rs.getInt(4));
+                lista.add(cli);
+            }
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, e);
+        }
+        return lista;
+    }
 }

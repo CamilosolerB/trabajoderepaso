@@ -3,6 +3,18 @@
     Created on : 6 mar 2022, 18:37:27
     Author     : PC
 --%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="modelo.CreditoDAO"%>
+<%@page import="modelo.Credito"%>
+<%
+    HttpSession sesion = request.getSession();
+    String doc = (String) sesion.getAttribute("documento");
+    Credito cre = new Credito(doc);
+    CreditoDAO cdao = new CreditoDAO();
+    ArrayList<Credito> credito = new ArrayList<>();
+    credito = cdao.Consultacreditoind(cre);
+    
+%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -68,5 +80,52 @@
           </div>
         </div>
       </nav>
+    <%
+      for(Credito lista:credito){  
+          String codlinea = lista.getCodlinea();
+          sesion.setAttribute("codigo", codlinea);
+    %>    
+            <form action="Servletcliente" method="GET" class="container m-6 p-4 box">
+        <h1 class="label">Mis Creditos</h1>
+        <div class="field">
+            <label class="label">Codigo del credito</label>
+            <div class="control">
+                <input class="input" value="<%=lista.getCodigo()%>" type="number" placeholder="Documento" name="adoc">
+            </div>
+          </div>
+          
+          <div class="field">
+            <label class="label">Su documento</label>
+            <div class="control">
+                <input class="input" value="<%=lista.getDocumento()%>" type="text" placeholder="Nombre" name="anom">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Codigo de linea</label>
+            <div class="control">
+                <input class="input" value="<%=lista.getCodlinea()%>" type="text" placeholder="Apellido" name="aape">
+            </div>
+          </div>
+          
+          <div class="field">
+            <label class="label">Monto de prestamo</label>
+            <div class="control">
+                <input class="input" value="<%=lista.getMonto()%>" type="email" placeholder="e.g. alexsmith@gmail.com" name="aema">
+            </div>
+          </div>
+          <div class="field">
+            <label class="label">Fecha de prestamo</label>
+            <div class="control">
+                <input class="input" value="<%=lista.getFecha()%>" type="email" placeholder="e.g. alexsmith@gmail.com" name="aema">
+            </div>
+          </div>
+            <div class="field">
+            <label class="label">Plazo</label>
+            <div class="control">
+                <input class="input" value="<%=lista.getPlazo()%>" type="email" placeholder="e.g. alexsmith@gmail.com" name="aema">
+            </div>
+          </div>
+        </form>
+        <%}%>
     </body>
 </html>
